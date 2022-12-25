@@ -1,0 +1,106 @@
+var inputCanvas = document.getElementById('inputCanvas');
+var outputCanvas = document.getElementById('outputCanvas');
+
+const context = inputCanvas.getContext('2d');
+const outContext = outputCanvas.getContext('2d');
+// inputCanvas.width = '2693px';
+// inputCanvas.height = '1276px';
+
+const srcimg = new Image();
+//inputImage.width = '2693px';
+//inputImage.height = '1276px';
+
+
+
+srcimg.onload = () =>{
+    //let dstx = new context.Mat();
+    //let dsty = new context.Mat();
+    //context.pixelDensity = .05;
+    //context.Sobel()
+    const dstimg = new Image(srcimg.width, srcimg.height);
+    //srcimg.
+    
+    context.drawImage(srcimg,0,0,897,425)
+    srcimg.pixels = context.getImageData(0,0,srcimg.width,srcimg.height).data;
+    dstimg.pixels = context.getImageData(0,0,srcimg.width,srcimg.height).data;
+    console.log(srcimg.pixels);
+
+
+    //	X-Direction Kernel
+	var k1 = [[-1, 0, 1],
+    [-2, 0, 2],
+    [-1, 0, 1]];
+    //srcimg.
+ 
+// srcimg.loadPixels();
+// dstimg.loadPixels();
+
+var w = srcimg.width;
+var h = srcimg.height;
+for (var x = 0; x < w; x++) {
+  for (var y = 0; y < h; y++) {
+  
+      // INDEX POSITION IN PIXEL LIST
+      var ul = ((x-1+w)%w + w*((y-1+h)%h))*4; // location of the UPPER LEFT
+      var uc = ((x-0+w)%w + w*((y-1+h)%h))*4; // location of the UPPER MID
+      var ur = ((x+1+w)%w + w*((y-1+h)%h))*4; // location of the UPPER RIGHT
+      var ml = ((x-1+w)%w + w*((y+0+h)%h))*4; // location of the LEFT
+      var mc = ((x-0+w)%w + w*((y+0+h)%h))*4; // location of the CENTER PIXEL
+      var mr = ((x+1+w)%w + w*((y+0+h)%h))*4; // location of the RIGHT
+      var ll = ((x-1+w)%w + w*((y+1+h)%h))*4; // location of the LOWER LEFT
+      var lc = ((x-0+w)%w + w*((y+1+h)%h))*4; // location of the LOWER MID
+      var lr = ((x+1+w)%w + w*((y+1+h)%h))*4; // location of the LOWER RIGHT
+
+      // green channel only
+      var p0 = srcimg.pixels[ul+1]*k1[0][0]; // upper left
+      var p1 = srcimg.pixels[uc+1]*k1[0][1]; // upper mid
+      var p2 = srcimg.pixels[ur+1]*k1[0][2]; // upper right
+      var p3 = srcimg.pixels[ml+1]*k1[1][0]; // left
+      var p4 = srcimg.pixels[mc+1]*k1[1][1]; // center pixel
+      var p5 = srcimg.pixels[mr+1]*k1[1][2]; // right
+      var p6 = srcimg.pixels[ll+1]*k1[2][0]; // lower left
+      var p7 = srcimg.pixels[lc+1]*k1[2][1]; // lower mid
+      var p8 = srcimg.pixels[lr+1]*k1[2][2]; // lower right
+      var r1 = p0+p1+p2+p3+p4+p5+p6+p7+p8;
+
+      // -1000 is the minimum value the sum could result in and 1000 is the maximum
+			var result = map(r2, -1000, 1000, 0, 255);
+
+			// write pixels into destination image:
+			dstimg.pixels[mc] = result; 
+			dstimg.pixels[mc+1] = result; 
+			dstimg.pixels[mc+2] = result; 
+			dstimg.pixels[mc+3] = 255; 	     // outContext.putImageData(dstimg.pixels,dstimg.width,dstimg.height);
+      //dstimg.loadImageData(dstimg.pixels)
+ 
+ }
+}
+
+
+
+// update and display the pixel buffer
+//dstimg.updatePixels()
+
+
+     //pixels[100][100];
+}
+
+srcimg.src = 'imperial.png'; 
+
+//inputImage.src = 'new_pfp.jpg';
+
+
+// function make_base(){
+//     let base_image = new Image();
+//     //base_image.src = 'imperial.png';
+//     base_image.src = 'new_pfp.jpg';
+//    // context.width= "1600px";
+    
+//     base_image.onload = ()=>{
+//         //base_image.width='600px';
+//        //base_image.height='600px';
+//         context.drawImage(base_image,0,0,900,900)
+//     }
+// }
+
+// make_base();
