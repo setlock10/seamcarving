@@ -17,5 +17,9 @@ function setup() {
   }
 
   function draw(){
+
+    
+
+
     image(srcimg, 0, 0, srcimg.width, srcimg.height);
   }

@@ -13,7 +13,7 @@ function setup() {
     
     pixelDensity(1);
     dstimg = createImage(srcimg.width, srcimg.height);
-
+	noLoop();
   }
   
   function draw() {
@@ -67,7 +67,17 @@ function setup() {
     	}
   	}	
 	// update and display the pixel buffer
+	// dstimg[900]=255;
+	// dstimg[901]=255;
+	// dstimg[902]=255;
+	// dstimg[900+1]=0;
+	// dstimg[900+2]=0;
+	// dstimg[901+1]=0;
+	// dstimg[901+2]=0;
+	//dstimg[900+1]=0;
 	dstimg.updatePixels();
+	//console.log(dstimg.pixels[500]);
+	//console.log(dstimg.get(100,100))
 	image(dstimg, 0, 0, dstimg.width, dstimg.height);
 	
   //  save(dstimg, 'output.png')c
