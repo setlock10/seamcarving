@@ -1,15 +1,15 @@
 var srcimg, dstimg;
 
 function preload() {
-  srcimg = loadImage('imperial.png');
+  srcimg = loadImage('imperial_small.png');
 }
 
 function setup() {
     var outputCanvas = createCanvas(srcimg.width, srcimg.height);
 
-    outputCanvas.style('scale','25%');
+   // outputCanvas.style('scale','25%');
     //outputCanvas.style('left','-500px')
-    outputCanvas.position(-200,-400);
+    outputCanvas.position(750,10);
     
     pixelDensity(1);
     dstimg = createImage(srcimg.width, srcimg.height);
@@ -19,9 +19,9 @@ function setup() {
   function draw() {
 	// X-Direction Kernel
 	var k1 = [
-        [-20, 0, 20],
-		[-30, 0, 30],
-		[-20, 0, 20]
+        [-4, 0, 4],
+		[-6, 0, 6],
+		[-4, 0, 4]
     ];
 	
 	srcimg.loadPixels();
