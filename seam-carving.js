@@ -26,7 +26,7 @@ function setup() {
     const seams = {};  // one potential seam for each 1 to width
     const used = {};   // has the individual pixel been used yet?
     const finalUsed = {};
-    const energy = {};
+    //const energy = {};
     const arr = srcimg.pixels;
     
 
@@ -42,6 +42,13 @@ function setup() {
 
 
 
+
+
+
+
+
+
+// final dstimage
     for (let i = 0; i<n; i++){
       if (!finalUsed[i*4]){
         dstimg.pixels[outIndex*4] = tmpimg.pixels[i*4];
