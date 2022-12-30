@@ -55,14 +55,14 @@ function setup() {
   }
  //console.log(used);
 
- for(let i = 1; i <w; i++){
-    for(let j = 1; j <h -1 ; j++){
+ for(let i = 1; i <h; i++){
+    for(let j = 1; j <w -1 ; j++){
       let minPos = null;
       let currPos = (i * w) + j
 
-      let x1 = ((i + 1) * w) + j - 1;
-      let x2 = ((i + 1) * w) + j ;
-       let x3 = ((i + 1) * w) + j + 1;
+      let x1 = ((i - 1) * w) + j - 1;
+      let x2 = ((i - 1) * w) + j ;
+       let x3 = ((i - 1) * w) + j + 1;
    // find min of unused values
        let temp = [];
    
